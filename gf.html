@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Christmas Gift to You</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-image: url('https://source.unsplash.com/1600x900/?christmas-snow'); /* Christmas Background */
+            background-size: cover;
+            background-position: center;
+            color: green
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        h1 {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.6);
+        }
+
+        .buttons-container {
+            display: flex;
+            gap: 20px;
+        }
+
+        .btn {
+            background-color: #ff4747;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: transform 0.2s ease-in-out, background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #ff1c1c;
+            transform: scale(1.1);
+        }
+
+        .content-container {
+            width: 80%;
+            height: 60vh;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            overflow-y: auto;
+            margin-top: 20px;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .content-container img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+        }
+
+        .content-container video {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+        }
+
+        .content-container p {
+            font-size: 1.3rem;
+            line-height: 1.5;
+            color: #fff;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Snowfall Effect */
+        .snowflake {
+            position: absolute;
+            top: -50px;
+            z-index: 1000;
+            color: #ffffff;
+            font-size: 1.5rem;
+            pointer-events: none;
+            user-select: none;
+            animation: fall 10s linear infinite;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>My Christmas Gift to You, My Princess ❤️</h1>
+    
+    <div class="buttons-container">
+        <button class="btn" onclick="showContent('pictures')">Pictures</button>
+        <button class="btn" onclick="showContent('letters')">Letters</button>
+        <button class="btn" onclick="showContent('videos')">Videos</button>
+    </div>
+
+    <div id="pictures" class="content-container hidden">
+        <img src="gf.img.jfif" alt="Your Picture 1">
+        <p>Here’s a picture that reminds me of you. ❤️</p>
+    </div>
+
+    <div id="letters" class="content-container hidden">
+        <p>My Dearest,</p>
+        <p>I want you to know how much I cherish every moment spent with you. Christmas is even more special because of you. Every year, I fall more and more in love with you, and I am so grateful to have you by my side.</p>
+        <p>Forever yours,</p>
+        <p>Your Love ❤️</p>
+    </div>
+
+    <div id="videos" class="content-container hidden">
+        <video controls>
+            <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <p>A video to remind you of all the good moments we’ve shared. I love you so much!</p>
+    </div>
+
+    <!-- Snowfall Animation -->
+    <div id="snowflakes"></div>
+
+    <script>
+        // Snowfall Effect
+        function createSnowflakes() {
+            for (let i = 0; i < 50; i++) {
+                const snowflake = document.createElement('div');
+                snowflake.classList.add('snowflake');
+                snowflake.textContent = '❄';
+                snowflake.style.left = `${Math.random() * 100}vw`;
+                snowflake.style.animationDuration = `${Math.random() * 3 + 5}s`;
+                snowflake.style.animationDelay = `${Math.random() * 5}s`;
+                document.getElementById('snowflakes').appendChild(snowflake);
+            }
+        }
+
+        createSnowflakes();
+
+        // Function to show content based on button clicks
+        function showContent(section) {
+            const sections = ['pictures', 'letters', 'videos'];
+            sections.forEach(sec => {
+                const container = document.getElementById(sec);
+                if (sec === section) {
+                    container.classList.remove('hidden');
+                    container.style.display = 'flex';
+                    setTimeout(() => {
+                        container.style.opacity = 1;
+                    }, 100);
+                } else {
+                    container.style.opacity = 0;
+                    setTimeout(() => {
+                        container.style.display = 'none';
+                    }, 500);
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>
